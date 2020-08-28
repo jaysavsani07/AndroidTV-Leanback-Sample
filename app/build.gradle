@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId 'com.mothership.tvhome'
         minSdkVersion 17
-        targetSdkVersion 23
+        targetSdkVersion 28
         versionCode 5
         versionName "1.0"
     }

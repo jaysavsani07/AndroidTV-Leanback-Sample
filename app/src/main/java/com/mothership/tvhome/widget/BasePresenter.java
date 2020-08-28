@@ -1,6 +1,7 @@
 package com.mothership.tvhome.widget;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v17.leanback.widget.Presenter;
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,11 +12,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.mothership.tvhome.R;
 import com.mothership.tvhome.Utils;
 import com.tv.ui.metro.model.DisplayItem;
 
+import static android.support.v17.leanback.widget.FocusHighlight.ZOOM_FACTOR_LARGE;
+import static android.support.v17.leanback.widget.FocusHighlight.ZOOM_FACTOR_MEDIUM;
 import static android.support.v17.leanback.widget.FocusHighlight.ZOOM_FACTOR_SMALL;
+import static android.support.v17.leanback.widget.FocusHighlight.ZOOM_FACTOR_XSMALL;
 
 /**
  * Created by Shawn on 16/3/8.
@@ -23,9 +30,9 @@ import static android.support.v17.leanback.widget.FocusHighlight.ZOOM_FACTOR_SMA
 public class BasePresenter extends Presenter
 {
     private static final String TAG = "BasePresenter";
-    protected int mBaseWidth = 538;
-    protected int mBaseHeight = 280;
-    private FocusHelper.FocusHighlightHandler mFocusHighlight = new FocusHelper.BrowseItemFocusHighlight(ZOOM_FACTOR_SMALL,false);
+    protected int mBaseWidth = 700;
+    protected int mBaseHeight = 300;
+    private FocusHelper.FocusHighlightHandler mFocusHighlight = new FocusHelper.BrowseItemFocusHighlight(ZOOM_FACTOR_SMALL,true);
 
     public class VH extends ViewHolder
     {
@@ -138,7 +145,8 @@ public class BasePresenter extends Presenter
                             .load(posterUrl)
                             .fitCenter()
                             .dontTransform()
-                            .fallback(R.drawable.a2)
+//                            .fallback(R.drawable.a2)
+                            .listener(requestListener)
                             .placeholder(R.drawable.a2)
                             .error(R.mipmap.ic_launcher)
                             .into(vh.mImg);
@@ -211,4 +219,19 @@ public class BasePresenter extends Presenter
                     .into(holder.mImg);
         }
     }
+
+    private RequestListener<String, GlideDrawable> requestListener = new RequestListener<String, GlideDrawable>() {
+        @Override
+        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+            // todo log exception
+                Log.d("TAG", e.getLocalizedMessage());
+            // important to return false so the error placeholder can be placed
+            return false;
+        }
+
+        @Override
+        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+            return false;
+        }
+    };
 }

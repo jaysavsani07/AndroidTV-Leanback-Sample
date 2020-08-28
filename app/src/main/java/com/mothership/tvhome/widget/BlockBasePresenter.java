@@ -57,6 +57,7 @@ public class BlockBasePresenter extends RowPresenter {
             mPaddingLeft = mGridView.getPaddingLeft();
             mPaddingRight = mGridView.getPaddingRight();
 
+
             if (mGridView instanceof HorizontalGridView) {
                 HorizontalGridView gridview = (HorizontalGridView) mGridView;
                 gridview.setScrollEnabled(false);

@@ -37,7 +37,7 @@ public class ItemTextView extends View{
         sTextPaint.density = getResources().getDisplayMetrics().density;
         sTextPaint.setTextSize((TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics())));
-        sTextPaint.setColor(0xFFFFFFFF);
+        sTextPaint.setColor(0xFFFFFF00);
     }
 /*
     @Override

@@ -105,7 +105,7 @@ public class MainHeaderPresenter extends Presenter {
             }
         }else{
             viewHolder.view.setVisibility(View.VISIBLE);
-            ((MainHeaderView) viewHolder.view).setText("page");
+            ((MainHeaderView) viewHolder.view).setText("Mehul");
         }
     }
 
